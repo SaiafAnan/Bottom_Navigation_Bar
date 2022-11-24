@@ -1,3 +1,4 @@
+import 'package:bottom_navigation_bar/add_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -57,6 +58,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.purple,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AddPage()),
+            );
+          },
+          child: Icon(Icons.add),
+        ),
         drawer: const Drawer(),
         appBar: AppBar(
           actions: [
@@ -79,41 +91,23 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        body: tabs[_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          type: BottomNavigationBarType.shifting,
-          selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.white,
-          selectedFontSize: 15,
-          unselectedFontSize: 20,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              backgroundColor: Colors.teal,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'Search',
-              backgroundColor: Colors.teal,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.camera),
-              label: 'Camera',
-              backgroundColor: Colors.teal,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-              backgroundColor: Colors.teal,
-            ),
-          ],
+        body: Text("Bottom App Bar"),
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.teal,
+          shape: CircularNotchedRectangle(),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.home),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.person),
+              ),
+            ],
+          ),
         ),
       ),
     );
